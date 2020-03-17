@@ -1,16 +1,22 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "opencensus-collector-app.fullname" . }}
+  name: oc-collector
   labels:
 {{ include "opencensus-collector-app.labels" . | indent 4 }}
 spec:
-  type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+  - name: opencensus
+    port: 55678
+    protocol: TCP
+    targetPort: 55678
+#  - name: jaeger-tchannel
+#    port: 14267
+#  - name: jaeger-thrift-http
+#    port: 14268
+#  - name: zipkin
+#    port: 9411
   selector:
-    app.kubernetes.io/name: {{ include "opencensus-collector-app.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+{{ include "opencensus-collector-app.labels" . | indent 4 }}
