@@ -36,6 +36,9 @@ Common labels
 */}}
 {{- define "opencensus-collector-app.labels" -}}
 app.kubernetes.io/name: {{ include "opencensus-collector-app.name" . }}
+app: {{ include "opencensus-collector-app.name" . }}
+component: oc-collector
+app.kubernetes.io/component: oc-collector
 helm.sh/chart: {{ include "opencensus-collector-app.chart" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- if .Chart.AppVersion }}
