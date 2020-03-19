@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: oc-collector-conf
+  name: {{ include "opencensus-collector-app.fullname" . }}-conf
   labels:
 {{ include "opencensus-collector-app.labels" . | indent 4 }}
 data:

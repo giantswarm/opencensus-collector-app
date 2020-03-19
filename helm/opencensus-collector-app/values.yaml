@@ -4,7 +4,8 @@
 replicaCount: 1
 
 image:
-  repository: omnition/opencensus-collector
+  repository: omnition
+  image: opencensus-collector
   tag: 0.1.11
   pullPolicy: IfNotPresent
 
