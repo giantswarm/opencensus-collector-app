@@ -29,18 +29,17 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
-        resources:
-          limits:
-            cpu: 1
-            memory: 2Gi
-          requests:
-            cpu: 200m
-            memory: 400Mi
         ports:
-        - containerPort: 55678
-#        - containerPort: 14267
-#        - containerPort: 14268
-#        - containerPort: 9411
+{{- if .Values.enableOpencensusReceiver }}
+        - containerPort: {{ .Values.ports.opencensusReceiver }}
+{{- end }}
+{{- if .Values.enableJaegerReceiver }}
+        - containerPort: {{ .Values.ports.jaegerReceiverTChannel }}
+        - containerPort: {{ .Values.ports.jaegerReceiverHTTP }}
+{{- end }}
+{{- if .Values.enableZipkinReceiver }}
+        - containerPort: {{ .Values.ports.zipkinReceiver }}
+{{- end }}
         volumeMounts:
         - name: oc-collector-config-vol
           mountPath: /conf

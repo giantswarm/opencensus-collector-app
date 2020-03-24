@@ -8,15 +8,23 @@ metadata:
 data:
   oc-collector-config: |
     receivers:
+{{- if .Values.enableOpencensusReceiver }}
       opencensus:
-        port: 55678
+        port: {{ .Values.ports.opencensusReceiver }}
         keepalive:
           server-parameters:
             max-connection-age: 120s
-            max-connection-age-grace: 30s            
+            max-connection-age-grace: 30s
+{{- end }}
+{{- if .Values.enableZipkinReceiver }}
       zipkin:
-        port: 9411
-      jaeger: {}
+        port: {{ .Values.ports.zipkinReceiver }}
+{{- end }}
+{{- if .Values.enableJaegerReceiver }}
+      jaeger:
+        jaeger-thrift-tchannel-port: {{ .Values.ports.jaegerReceiverTChannel }}
+        jaeger-thrift-http-port: {{ .Values.ports.jaegerReceiverHTTP }}
+{{- end }}
     queued-exporters:
       jaeger:
         num-workers: 4
@@ -24,5 +32,5 @@ data:
         retry-on-failure: true
         sender-type: jaeger-thrift-http
         jaeger-thrift-http:
-          collector-endpoint: http://jaeger.tracing:14268/api/traces
+          collector-endpoint: {{ .Values.jaegerURL }}
           timeout: 5s

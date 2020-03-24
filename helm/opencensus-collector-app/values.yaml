@@ -23,3 +23,15 @@ resources:
   requests:
     cpu: 200m
     memory: 512Mi
+
+enableOpencensusReceiver: true
+enableZipkinReceiver: true
+enableJaegerReceiver: true
+
+ports:
+  opencensusReceiver: 55678
+  zipkinReceiver: 9411
+  jaegerReceiverTChannel: 14267
+  jaegerReceiverHTTP: 14268
+
+jaegerURL: http://jaeger.tracing:14268/api/traces
