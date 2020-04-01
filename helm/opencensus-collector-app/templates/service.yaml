@@ -7,15 +7,21 @@ metadata:
 {{ include "opencensus-collector-app.labels" . | indent 4 }}
 spec:
   ports:
+{{- if .Values.enableOpencensusReceiver }}
   - name: opencensus
-    port: 55678
+    port: {{ .Values.ports.opencensusReceiver }}
     protocol: TCP
-    targetPort: 55678
-#  - name: jaeger-tchannel
-#    port: 14267
-#  - name: jaeger-thrift-http
-#    port: 14268
-#  - name: zipkin
-#    port: 9411
+    targetPort: {{ .Values.ports.opencensusReceiver }}
+{{- end }}
+{{- if .Values.enableJaegerReceiver }}
+  - name: jaeger-tchannel
+    port: {{ .Values.ports.jaegerReceiverTChannel }}
+  - name: jaeger-thrift-http
+    port: {{ .Values.ports.jaegerReceiverHTTP }}
+{{- end }}
+{{- if .Values.enableZipkinReceiver }}
+  - name: zipkin
+    port: {{ .Values.ports.zipkinReceiver }}
   selector:
+{{- end }}
 {{ include "opencensus-collector-app.labels" . | indent 4 }}
