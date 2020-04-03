@@ -1,5 +1,20 @@
 apiVersion: v1
-appVersion: "1.0"
-description: A Helm chart for Kubernetes
+appVersion: {{ .Values.image.tag }}
+version: [[ .Version ]]
 name: opencensus-collector-app
-version: 0.1.0
+description: |
+The OpenCensus Collector is a component that runs "nearby" (e.g. in the same VPC, AZ, etc.)
+a user’s application components and receives trace spans and metrics emitted by supported Receivers.
+The received spans and metrics could be emitted directly by clients in instrumented tasks, or
+potentially routed via intermediate proxy sidecar/daemon agents such as the OpenCensus Agent.
+The collector provides a central egress point for exporting traces and metrics to one or more tracing
+and/or metrics backends while offering buffering and retries as well as advanced aggregation, filtering,
+annotation and intelligent sampling capabilities.
+home: https://opencensus.io/service/components/collector/
+icon: https://raw.githubusercontent.com/giantswarm/opencensus-collector-app/master/img/icon-oc.png
+kubeVersion: ^1.15.0-0
+maintainers:
+- email: hello@giantswarm.io
+  name: Giantswarm Team
+sources:
+- https://github.com/giantswarm/opencensus-collector-app
