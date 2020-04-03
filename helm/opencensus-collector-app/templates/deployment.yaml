@@ -5,7 +5,6 @@ metadata:
   labels:
 {{ include "opencensus-collector-app.labels" . | indent 4 }}
 spec:
-  serviceAccountName: {{ include "opencensus-collector-app.fullname" . }}
   minReadySeconds: 5
   progressDeadlineSeconds: 120
   replicas: {{ .Values.replicaCount }}
