@@ -4,8 +4,8 @@
 replicaCount: 1
 
 image:
-  repository: omnition
-  image: opencensus-collector
+  registry: quay.io
+  image: giantswarm/opencensus-collector
   tag: 0.1.11
   pullPolicy: IfNotPresent
 
