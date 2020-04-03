@@ -17,5 +17,5 @@ spec:
       args:  ['{{ include "opencensus-collector-app.fullname" . }}:{{ .Values.ports.zipkinReceiver }}']
 {{- else if .Values.enableJaegerReceiver }}
       args:  ['{{ include "opencensus-collector-app.fullname" . }}:{{ .Values.ports.jaegerReceiverTChannel }}']
-{{- end -}}}}
+{{- end }}
   restartPolicy: Never
