@@ -9,6 +9,9 @@ spec:
   minReadySeconds: 5
   progressDeadlineSeconds: 120
   replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+{{ include "opencensus-collector-app.labels" . | indent 6 }}
   template:
     metadata:
       annotations:
