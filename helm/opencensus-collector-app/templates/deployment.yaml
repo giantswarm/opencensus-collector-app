@@ -33,6 +33,8 @@ spec:
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
         ports:
+        # zPages port
+        - containerPort: 55679
 {{- if .Values.enableOpencensusReceiver }}
         - containerPort: {{ .Values.ports.opencensusReceiver }}
 {{- end }}
