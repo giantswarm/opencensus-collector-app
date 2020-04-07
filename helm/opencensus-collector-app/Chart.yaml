@@ -1,6 +1,6 @@
 apiVersion: v1
 appVersion: 0.1.11
-version: 0.0.0-c1a01192241670b2f10205628d8f66fdd0088ed2
+version: [[ .Version ]]
 name: opencensus-collector-app
 description: |
   The OpenCensus Collector is a component that runs "nearby" (e.g. in the same VPC, AZ, etc.)
