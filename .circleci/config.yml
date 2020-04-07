@@ -28,7 +28,7 @@ jobs:
             - /tmp/bin
       - run: /tmp/bin/helm init -c
       - run: PATH="/tmp/bin:$PATH" /tmp/kind-app-testing.sh -c opencensus-collector-app
-      - run: sudo chown -R circleci.circleci /tmp/kat
+      - run: if [[ -d /tmp/kat ]]; then sudo chown -R circleci.circleci /tmp/kat; fi
       - save_cache:
           key: v2-python-cache-{{ checksum "test/kind/Pipfile.lock" }}
           paths:
