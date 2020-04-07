@@ -8,6 +8,9 @@ spec:
   minReadySeconds: 5
   progressDeadlineSeconds: 120
   replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+{{ include "opencensus-collector-app.labels" . | indent 6 }}
   template:
     metadata:
       annotations:
@@ -25,20 +28,30 @@ spec:
         - name: GOGC
           value: "80"
         name: {{ .Chart.Name }}
-        image: "{{ .Values.image.repository }}/{{ .Values.image.image }}:{{ .Values.image.tag }}"
+        image: "{{ .Values.image.registry }}/{{ .Values.image.image }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
         ports:
+        - containerPort: 55679
+          name: zpages
+        - containerPort: 13133
+          name: health-check
+        - containerPort: 8888
+          name: metrics
 {{- if .Values.enableOpencensusReceiver }}
         - containerPort: {{ .Values.ports.opencensusReceiver }}
+          name: oc-receiver
 {{- end }}
 {{- if .Values.enableJaegerReceiver }}
         - containerPort: {{ .Values.ports.jaegerReceiverTChannel }}
+          name: j-tchannel
         - containerPort: {{ .Values.ports.jaegerReceiverHTTP }}
+          name: j-http
 {{- end }}
 {{- if .Values.enableZipkinReceiver }}
         - containerPort: {{ .Values.ports.zipkinReceiver }}
+          name: zipkin-receiver
 {{- end }}
         volumeMounts:
         - name: oc-collector-config-vol

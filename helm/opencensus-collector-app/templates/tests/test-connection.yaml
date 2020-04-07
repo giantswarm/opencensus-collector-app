@@ -11,5 +11,11 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args:  ['{{ include "opencensus-collector-app.fullname" . }}:{{ .Values.service.port }}']
+{{- if .Values.enableOpencensusReceiver }}
+      args:  ['{{ include "opencensus-collector-app.fullname" . }}:{{ .Values.ports.opencensusReceiver }}']
+{{- else if .Values.enableZipkinReceiver }}
+      args:  ['{{ include "opencensus-collector-app.fullname" . }}:{{ .Values.ports.zipkinReceiver }}']
+{{- else if .Values.enableJaegerReceiver }}
+      args:  ['{{ include "opencensus-collector-app.fullname" . }}:{{ .Values.ports.jaegerReceiverTChannel }}']
+{{- end }}
   restartPolicy: Never
