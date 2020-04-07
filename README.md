@@ -2,7 +2,7 @@
 
 # opencensus-collector
 
-This char simply installs [opencensus collector](https://opencensus.io/service/components/collector/).
+This chart simply installs [opencensus collector](https://opencensus.io/service/components/collector/).
 It allows to configure 4 different receivers and is pre-configured to export only to Jaeger.
 
 ## Configuration
