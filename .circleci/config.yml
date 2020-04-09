@@ -7,7 +7,7 @@ workflows:
   build:
     jobs:
       - architect/run-kat-tests:
-          name: "test opencensus-collector-app chart"
+          name: "test with kat opencensus-collector-app chart"
           chart: "opencensus-collector-app"
           filters:
             tags:
