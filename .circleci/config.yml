@@ -15,7 +15,7 @@ workflows:
       - architect/push-to-app-catalog:
           name: "package and push opencensus-collector-app chart"
           requires:
-            - "test opencensus-collector-app chart"
+            - architect/run-kat-tests:
           app_catalog: "giantswarm-playground-catalog"
           app_catalog_test: "giantswarm-playground-test-catalog"
           chart: "opencensus-collector-app"
