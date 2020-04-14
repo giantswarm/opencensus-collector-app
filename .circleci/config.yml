@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  architect: giantswarm/architect@dev:kat-test
+  architect: giantswarm/architect@0.8.9
 
 workflows:
   version: 2
