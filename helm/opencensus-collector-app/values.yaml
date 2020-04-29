@@ -33,3 +33,5 @@ ports:
   jaegerReceiverHTTP: 14268
 
 jaegerURL: http://jaeger.tracing:14268/api/traces
+
+annotateNamespaceForLinkerd: false
