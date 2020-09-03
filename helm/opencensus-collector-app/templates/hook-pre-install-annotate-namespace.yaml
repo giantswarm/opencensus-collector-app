@@ -1,4 +1,4 @@
-{{- if .Values.annotateNamespaceForLinkerd }}
+{{- if .Values.linkerdEnabled }}
 apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
 metadata:

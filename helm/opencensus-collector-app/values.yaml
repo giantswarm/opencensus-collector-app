@@ -34,7 +34,7 @@ ports:
 
 jaegerURL: http://jaeger.tracing:14268/api/traces
 
-annotateNamespaceForLinkerd: false
+linkerdEnabled: false
 
 kubectlImage:
   registry: quay.io

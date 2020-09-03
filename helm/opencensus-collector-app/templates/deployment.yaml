@@ -1,3 +1,12 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ include "opencensus-collector-app.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+{{ include "opencensus-collector-app.labels" . | indent 4 }}
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -20,6 +29,7 @@ spec:
       labels:
 {{ include "opencensus-collector-app.labels" . | indent 8 }}
     spec:
+      serviceAccountName: {{ include "opencensus-collector-app.fullname" . }}
       containers:
       - command:
           - "/occollector_linux"
