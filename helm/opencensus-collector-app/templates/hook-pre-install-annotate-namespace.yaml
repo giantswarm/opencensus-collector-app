@@ -115,10 +115,14 @@ metadata:
   annotations:
     "helm.sh/hook": "pre-install"
     "helm.sh/hook-delete-policy": "hook-succeeded,hook-failed"
+    linkerd.io/inject: disabled
   labels:
     app: namespace-tagger
 spec:
   template:
+    metadata:
+      annotations:
+        linkerd.io/inject: disabled
     spec:
       serviceAccountName: namespace-tagger
       containers:
