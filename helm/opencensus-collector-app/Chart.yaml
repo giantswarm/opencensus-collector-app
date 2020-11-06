@@ -11,7 +11,7 @@ description: |
   and/or metrics backends while offering buffering and retries as well as advanced aggregation, filtering,
   annotation and intelligent sampling capabilities.
 home: https://opencensus.io/service/components/collector/
-icon: https://raw.githubusercontent.com/giantswarm/opencensus-collector-app/master/img/icon-oc.png
+icon: https://s.giantswarm.io/app-icons/1/png/opencensus-collector-app-light.png
 kubeVersion: ^1.15.0-0
 maintainers:
 - email: hello@giantswarm.io
